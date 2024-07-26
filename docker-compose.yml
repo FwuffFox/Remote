@@ -1,0 +1,12 @@
+﻿services:
+  remote:
+    image: remote
+    build:
+      context: .
+      dockerfile: Remote/Dockerfile
+
+  remoteweb:
+    image: remoteweb
+    build:
+      context: .
+      dockerfile: RemoteWeb/Dockerfile
