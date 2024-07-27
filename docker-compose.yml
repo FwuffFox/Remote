@@ -1,12 +1,34 @@
 ﻿services:
   remote:
-    image: remote
+    image: remote:latest
     build:
       context: .
-      dockerfile: Remote/Dockerfile
+      dockerfile: ./Remote/Dockerfile
+      target: final
+    networks:
+      - internal
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    networks:
+      - internal
 
   remoteweb:
     image: remoteweb
     build:
       context: .
-      dockerfile: RemoteWeb/Dockerfile
+      dockerfile: ./RemoteWeb/Dockerfile
+      target: final
+    ports:
+      - "8080:8080"
+    networks:
+      - internal
+      - default
+
+networks:
+  internal:
+    internal: true

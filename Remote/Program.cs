@@ -20,6 +20,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/time", () => DateTime.Now);
+
 // add signalR
 app.MapHub<ChatHub>("/chatHub");
 
